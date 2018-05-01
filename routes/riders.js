@@ -18,7 +18,10 @@ router.get('/:id', (req, res) => {
 })
 
 router.post('/', (req, res) => {
-  queries.matchDestination(req.body)
+  queries.matchDestination(req.body.destination)
+  .then(matches => {
+    res.status(201).json({matches})
+  })
 })
 
 module.exports = router

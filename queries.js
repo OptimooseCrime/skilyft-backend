@@ -27,7 +27,9 @@ module.exports = {
       .first()
       .returning('*')
     },
-    // matchDestination(body){
-    //   console.log(body);
-    // }
+    matchDestination(destination){
+      return knex('riders')
+      .where('destination', destination)
+      .returning('*')
+    }
 }
