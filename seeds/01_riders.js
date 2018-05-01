@@ -13,7 +13,7 @@ exports.seed = function(knex, Promise) {
         {id: 6, userName: 'Snow Bunny', destination: 'Beaver Creek', departing: '2018-05-12', time: 700}
       ])
       .then(() => {
-        knex.raw('ALTER SEQUENCE riders_id_seq RESTART WITH 6;')
+        knex.raw('ALTER SEQUENCE riders_id_seq RESTART WITH 7;')
       })
     });
 };
