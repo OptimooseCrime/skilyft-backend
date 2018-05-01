@@ -3,6 +3,7 @@ const bodyParser = require("body-parser")
 const morgan = require("morgan")
 const app = express()
 const users = require("./routes/users")
+const riders = require("./routes/riders")
 
 app.use(morgan('dev'))
 app.use(bodyParser.json())
@@ -18,6 +19,7 @@ app.use((req, res, next) => {
     err.status = 404
     next(err)
 });
+
 
 // error handler
 app.use((err, req, res, next) => {

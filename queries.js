@@ -8,13 +8,14 @@ module.exports = {
       .then(newAccount => newAccount[0])
     },
     matchCredentials(body){
-      const users = return knex('users')
+      const users = knex('users')
       for(i = 0; i < users.length; i++){
         if(body == users[i]){
           return body
           .returning(body)
         }
       }
+      return users
     },
     getAllRiders(){
       return knex('riders')
@@ -25,5 +26,8 @@ module.exports = {
       .where('id', id)
       .first()
       .returning('*')
-    }
+    },
+    // matchDestination(body){
+    //   console.log(body);
+    // }
 }
