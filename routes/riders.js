@@ -11,9 +11,20 @@ router.get('/', (req, res) => {
 })
 
 router.get('/:id', (req, res) => {
-  queries.viewRider(req.params.id)
+  const id = req.params.id
+  queries.viewRider(id)
   .then(rider => {
     res.status(200).json({rider})
+  })
+})
+
+router.get('/drivers', (req, res) => {
+  const drive = req.body.drive
+  queries.showDrivers(drive)
+  .then(drivers => {
+    if(drive == false){
+      res.status(200).json({drivers})
+    }
   })
 })
 
@@ -23,5 +34,14 @@ router.post('/', (req, res) => {
     res.status(201).json({matches})
   })
 })
+
+router.post('/destination', (req, res) => {
+  const id = req.params.id
+  queries.updateDriving(drive, id)
+  .then(drivers => {
+    res.status(200)
+  })
+})
+
 
 module.exports = router

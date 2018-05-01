@@ -31,5 +31,19 @@ module.exports = {
       return knex('riders')
       .where('destination', destination)
       .returning('*')
+    },
+    updateDriving(drive, id){
+      return knex('riders')
+      .where('id', id)
+      .update(drive)
+      .returning('*')
+    },
+    showDrivers(drive){
+      return knex('riders')
+      if(drive == false){
+        return drive
+        .where('drive', true)
+        .returning('*')
+      }
     }
 }
