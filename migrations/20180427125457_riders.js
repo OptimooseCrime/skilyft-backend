@@ -6,6 +6,7 @@ exports.up = function(knex, Promise) {
     table.text('destination')
     table.date('departing')
     table.integer('time')
+    table.boolean('drive')
   })
 };
 
