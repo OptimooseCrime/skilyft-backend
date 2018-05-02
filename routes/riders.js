@@ -39,11 +39,18 @@ router.post('/drivers', (req, res) => {
   })
 })
 
-router.post('/', (req, res) => {
+router.post('/match', (req, res) => {
   queries.matchDate(req.body.departing)
   queries.matchDestination(req.body.destination)
   .then(matches => {
-    res.status(201).json({matches})
+    res.status(200).json({matches})
+  })
+})
+
+router.post('/', (req, res) => {
+  queries.addRider(req.body)
+  .then(newRider => {
+    res.status(201).json({newRider})
   })
 })
 

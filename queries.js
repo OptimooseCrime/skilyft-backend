@@ -50,5 +50,11 @@ module.exports = {
       return knex('riders')
       .where('departing', departing)
       .returning('*')
+    },
+    addRider(body){
+      return knex('riders')
+      .insert(body)
+      .returning('*')
+      .then(newRider => newRider[0])
     }
 }
