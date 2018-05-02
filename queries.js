@@ -38,11 +38,11 @@ module.exports = {
       .update(drive)
       .returning('*')
     },
-    showDrivers(drive){
+    showDrivers(body){
       return knex('riders')
-      if(drive == false){
-        return drive
-        .where('drive', true)
+      .where('drive', body.drive)
+      if(body.drive == false){
+        return body
         .returning('*')
       }
     }

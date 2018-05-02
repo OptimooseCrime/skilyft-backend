@@ -12,17 +12,30 @@ router.get('/', (req, res) => {
 
 router.get('/:id', (req, res) => {
   const id = req.params.id
-  queries.viewRider(id)
-  .then(rider => {
-    res.status(200).json({rider})
-  })
+  const body = req.body
+  function getId(body, id){
+    for (i=0;i<body.length;i++){
+      if (bodyId[i].id == id){
+        return body[i]
+      }
+    }
+  }
+  let indentify = getId(body, id)
+  if(id == null){
+    res.status(404).send('No driver found for this ID')
+  } else {
+    queries.viewRider(id)
+    .then(rider => {
+      res.status(200).json({rider})
+    })
+  }
 })
 
 router.get('/drivers', (req, res) => {
-  const drive = req.body.drive
+  const body = req.body
   queries.showDrivers(drive)
   .then(drivers => {
-    if(drive == false){
+    if(body.drive == false){
       res.status(200).json({drivers})
     }
   })
