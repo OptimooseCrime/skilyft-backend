@@ -45,5 +45,10 @@ module.exports = {
         return body
         .returning('*')
       }
+    },
+    matchDate(departing){
+      return knex('departing')
+      .where('departing', departing)
+      .returning('*')
     }
 }
