@@ -47,7 +47,7 @@ module.exports = {
       }
     },
     matchDate(departing){
-      return knex('departing')
+      return knex('riders')
       .where('departing', departing)
       .returning('*')
     }

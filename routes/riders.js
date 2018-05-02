@@ -40,6 +40,7 @@ router.post('/drivers', (req, res) => {
 })
 
 router.post('/', (req, res) => {
+  queries.matchDate(req.body.departing)
   queries.matchDestination(req.body.destination)
   .then(matches => {
     res.status(201).json({matches})

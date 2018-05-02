@@ -8,7 +8,7 @@ exports.up = function(knex, Promise) {
     table.text('lastName')
     table.text('vehicle')
     table.text('destination')
-    table.date('departing')
+    table.text('departing')
     table.integer('time')
     table.boolean('drive')
   })
