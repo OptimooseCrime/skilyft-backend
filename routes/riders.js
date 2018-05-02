@@ -35,9 +35,7 @@ router.post('/drivers', (req, res) => {
   const body = req.body
   queries.showDrivers(body)
   .then(drivers => {
-    if(body.drive == false){
       res.status(200).json({drivers})
-    }
   })
 })
 

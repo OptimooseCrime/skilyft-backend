@@ -40,8 +40,8 @@ module.exports = {
     },
     showDrivers(body){
       return knex('riders')
-      .where('drive', body.drive)
-      if(body.drive == false){
+      .where('drive', true)
+      if(body.drive === false){
         return body
         .returning('*')
       }
