@@ -21,8 +21,8 @@ router.get('/:id', (req, res) => {
     }
   }
   let indentify = getId(body, id)
-  if(id == null){
-    res.status(404).send('No driver found for this ID')
+  if(indentify == null){
+    res.status(404).json({"message": "No driver found for this ID"})
   } else {
     queries.viewRider(id)
     .then(rider => {
@@ -31,9 +31,9 @@ router.get('/:id', (req, res) => {
   }
 })
 
-router.get('/drivers', (req, res) => {
+router.post('/drivers', (req, res) => {
   const body = req.body
-  queries.showDrivers(drive)
+  queries.showDrivers(body)
   .then(drivers => {
     if(body.drive == false){
       res.status(200).json({drivers})
