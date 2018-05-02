@@ -2,7 +2,11 @@
 exports.up = function(knex, Promise) {
   return knex.schema.createTable('riders', table => {
     table.increments('id')
+    table.text('imageUrl')
     table.text('userName')
+    table.text('firstName')
+    table.text('lastName')
+    table.text('vehicle')
     table.text('destination')
     table.date('departing')
     table.integer('time')
