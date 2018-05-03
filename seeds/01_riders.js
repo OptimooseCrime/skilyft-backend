@@ -12,8 +12,6 @@ exports.seed = function(knex, Promise) {
         {id: 5, imageUrl:'https://s3-us-west-1.amazonaws.com/skilyft-photos/austen.png', userName: 'Austen', firstName:'Austen', lastName:'Elswick', vehicle:'2006 mazda 3', destination: 'Keystone', departing: '2018-05-12', time: 700, drive: true},
         {id: 6, imageUrl:'https://s3-us-west-1.amazonaws.com/skilyft-photos/snowbunny.jpg', userName: 'Snow Bunny', firstName:'Trisha', lastName:'Basic', vehicle:'2001 volkswagon beetle', destination: 'Beaver Creek', departing: '2018-05-12', time: 700, drive: true}
       ])
-      .then(() => {
-        knex.raw('ALTER SEQUENCE riders_id_seq RESTART WITH 7;')
-      })
+      .then(() => knex.raw('ALTER SEQUENCE riders_id_seq RESTART WITH 7;'))
     });
 };

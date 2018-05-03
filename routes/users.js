@@ -16,8 +16,9 @@ router.get('/', (req, res) => {
 })
 
 router.post('/create', (req, res) => {
-  queries.createAccount(req.body).then(account => {
-        res.status(201).redirect('localhost:3000/')
+  queries.createAccount(req.body)
+  .then(account => {
+    res.status(201).redirect('localhost:3000/')
   })
 })
 

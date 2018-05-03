@@ -31,6 +31,13 @@ router.get('/:id', (req, res) => {
   }
 })
 
+router.post('/', (req, res) => {
+  queries.addRider(req.body)
+  .then(newRider => {
+    res.status(201).json({newRider})
+  })
+})
+
 router.post('/drivers', (req, res) => {
   const body = req.body
   queries.showDrivers(body)
@@ -47,12 +54,6 @@ router.post('/match', (req, res) => {
   })
 })
 
-router.post('/', (req, res) => {
-  queries.addRider(req.body)
-  .then(newRider => {
-    res.status(201).json({newRider})
-  })
-})
 
 router.post('/destination', (req, res) => {
   const id = req.params.id
