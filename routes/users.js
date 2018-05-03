@@ -7,10 +7,10 @@ router.get('/', (req, res) => {
   const body = req.body
   queries.matchCredentials(body)
   .then(body => {
-    if(body == null){
-      res.status(404).send('you\'re credentials are incorrect')
+    if(body.length){
+      res.status(200).json({message: "success"})
     } else {
-      res.status(200).redirect('localhost:3000/welcome')
+      res.status(404).json({message: "failure"})
     }
   })
 })
@@ -18,7 +18,7 @@ router.get('/', (req, res) => {
 router.post('/create', (req, res) => {
   queries.createAccount(req.body)
   .then(account => {
-    res.status(201).redirect('localhost:3000/')
+    res.status(201).json({message: "signed up"})
   })
 })
 

@@ -1,21 +1,28 @@
 const knex = require("./database-connection")
+const crypto = require('crypto')
 
 module.exports = {
     createAccount(account){
       return knex('users')
-      .insert(account)
+      .insert({userName: account.userName})
+      function hashMeOutside(str) {
+        const hash = crypto.createHash('sha256')
+        hash.update(str)
+        return hash.digest('hex')
+      }
+      .insert({password: hashMeOutside(account.password)})
+      .first()
       .returning('*')
-      .then(newAccount => newAccount[0])
     },
     matchCredentials(body){
-      const users = knex('users')
-      for(i = 0; i < users.length; i++){
-        if(body == users[i]){
-          return body
-          .returning(body)
-        }
+      return knex('users')
+      function hashMeOutside(str) {
+        const hash = crypto.createHash('sha256')
+        hash.update(str)
+        return hash.digest('hex')
       }
-      return users
+      .where('password', hashMeOutside(body.password))
+      .returning('*')
     },
     getAllRiders(){
       return knex('riders')
