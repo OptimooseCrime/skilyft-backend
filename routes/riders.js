@@ -51,4 +51,12 @@ router.post('/destination', (req, res) => {
   })
 })
 
+router.post('./delete', (req,res){
+  const id  = req.params.id
+  queries.deleteRider(id)
+  .then(deleted => {
+    res.status(204)
+  })
+})
+
 module.exports = router

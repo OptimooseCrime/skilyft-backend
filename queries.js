@@ -63,5 +63,9 @@ module.exports = {
       .returning('*')
       .then(newRider => newRider[0])
     },
-  
+    deleteRider(id){
+      return ('riders')
+      .where('id', id)
+      .del()
+    }
 }
