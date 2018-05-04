@@ -3,24 +3,23 @@ const crypto = require('crypto')
 
 module.exports = {
     createAccount(account){
-      return knex('users')
-      .insert({userName: account.userName})
       function hashMeOutside(str) {
         const hash = crypto.createHash('sha256')
         hash.update(str)
         return hash.digest('hex')
       }
-      .insert({password: hashMeOutside(account.password)})
+      return knex('users')
+      .insert([{password: hashMeOutside(account.password)}, {userName: account.userName}])
       .first()
       .returning('*')
     },
     matchCredentials(body){
-      return knex('users')
       function hashMeOutside(str) {
         const hash = crypto.createHash('sha256')
         hash.update(str)
         return hash.digest('hex')
       }
+      return knex('users')
       .where('password', hashMeOutside(body.password))
       .returning('*')
     },
@@ -63,5 +62,11 @@ module.exports = {
       .insert(body)
       .returning('*')
       .then(newRider => newRider[0])
+    },
+    uploadPhoto(image){
+      return knex('riders')
+      .where('image', image)
+      .insert(image)
+      .returning('*')
     }
 }

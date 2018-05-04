@@ -11,24 +11,12 @@ router.get('/', (req, res) => {
 })
 
 router.get('/:id', (req, res) => {
-  const id = req.params.id
-  const body = req.body
-  function getId(body, id){
-    for (i=0;i<body.length;i++){
-      if (bodyId[i].id == id){
-        return body[i]
-      }
-    }
-  }
-  let indentify = getId(body, id)
-  if(indentify == null){
-    res.status(404).json({"message": "No driver found for this ID"})
-  } else {
-    queries.viewRider(id)
-    .then(rider => {
-      res.status(200).json({rider})
-    })
-  }
+  queries.viewRider(req.params.id)
+  .then(rider => {
+    rider
+      ? res.status(200).json({rider})
+      : res.status(404).json({message: "no driver found for this id"})
+  })
 })
 
 router.post('/', (req, res) => {
@@ -63,5 +51,12 @@ router.post('/destination', (req, res) => {
   })
 })
 
+router.post('/upload', (req, res) => {
+  const image = req.body.image
+  queries.uploadPhoto(image)
+  .then(photo => {
+    res.status(201).json({photo})
+  })
+})
 
 module.exports = router
