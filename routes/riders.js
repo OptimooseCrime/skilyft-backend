@@ -51,12 +51,4 @@ router.post('/destination', (req, res) => {
   })
 })
 
-router.post('/upload', (req, res) => {
-  const image = req.body.image
-  queries.uploadPhoto(image)
-  .then(photo => {
-    res.status(201).json({photo})
-  })
-})
-
 module.exports = router

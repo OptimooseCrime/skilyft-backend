@@ -63,10 +63,5 @@ module.exports = {
       .returning('*')
       .then(newRider => newRider[0])
     },
-    uploadPhoto(image){
-      return knex('riders')
-      .where('image', image)
-      .insert(image)
-      .returning('*')
-    }
+  
 }
